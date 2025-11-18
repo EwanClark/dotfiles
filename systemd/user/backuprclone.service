@@ -1,0 +1,8 @@
+[Unit]
+Description=Run Rclone backup
+
+[Service]
+Type=oneshot
+ExecStart=%h/.config/rclone/backuprclone.sh
+StandardOutput=journal
+StandardError=journal

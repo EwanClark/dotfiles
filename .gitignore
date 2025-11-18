@@ -1,0 +1,29 @@
+# ignore everything
+/*
+
+# allow configs we want to keep using this format
+# !dir
+!DankMaterialShell/
+!danksearch/
+!dgop/
+!fastfetch/
+!fish/
+!gh/
+!gtk-3.0/
+!gtk-4.0/
+!hypr/
+!kitty/
+!nvim/
+!qt5ct/
+!qt6ct/
+!rclone/
+!systemd/
+!brave-flags.conf
+!code-flags.conf
+!electron-flags.conf
+!mimeapps.list
+!starship.toml
+!.gitignore
+
+# ignore configs with secrets
+rclone/rclone.conf

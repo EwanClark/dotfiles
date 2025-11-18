@@ -1,0 +1,35 @@
+{
+  "grimblast": {
+    "enabled": true,
+    "saveLocation": "~/Media/Pictures/Screenshots"
+  },
+  "calculator": {
+    "enabled": true,
+    "trigger": "="
+  },
+  "emojiLauncher": {
+    "enabled": true,
+    "trigger": ".",
+    "noTrigger": false
+  },
+  "commandRunner": {
+    "enabled": true,
+    "history": [
+      "killall dms"
+    ]
+  },
+  "webSearch": {
+    "enabled": false,
+    "noTrigger": false,
+    "trigger": "?",
+    "searchEngines": []
+  },
+  "dankActions": {
+    "enabled": true
+  },
+  "capture": {
+    "enabled": true,
+    "saveLocation": "~/Media/Pictures/Screenshots",
+    "videoSaveLocation": "~/Media/Videos/Screenrecordings"
+  }
+}

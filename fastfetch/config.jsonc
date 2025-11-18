@@ -1,0 +1,105 @@
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    "logo": {
+        "height": 18
+    },
+    "display": {
+        "separator": ": "
+    },
+    "modules": [
+        {
+            "type": "command",
+            "key": "  \u001b[36m󱥃 \u001b[0m",  // Cyan icon
+            "keyColor": "cyan",
+            "format": "\u001b[1;36m{1}\u001b[0m",  // Bold and cyan text
+            "text": "date +'%a %d %b %I:%M %p' | sed 's/AM/am/; s/PM/pm/'"
+        },
+        {
+            "type": "custom",
+            "format": "┌──────────────────────────────────────────┐"
+        },
+        {
+            "type": "os",
+            "key": "   OS",
+            "keyColor": "red"
+        },
+        {
+            "type": "kernel",
+            "key": "   Kernel",
+            "keyColor": "red"
+        },
+        {
+            "type": "packages",
+            "key": "   Packages",
+            "keyColor": "green"
+        },
+        {
+            "type": "Shell",
+            "key": "   Shell",
+            "keyColor": "green"
+        },
+        {
+            "type": "wm",
+            "key": "   WM",
+            "keyColor": "yellow"
+        },
+        {
+            "type": "terminal",
+            "key": "   Terminal",
+            "keyColor": "yellow"
+        },
+        {
+            "type": "custom",
+            "format": "└──────────────────────────────────────────┘"
+        },
+        "break",
+        {
+            "type": "title",
+            "key": "   "
+        },
+        {
+            "type": "custom",
+            "format": "┌──────────────────────────────────────────┐"
+        },
+        {
+            "type": "cpu",
+            "format": "{1}",
+            "key": "  󰍛 CPU",
+            "keyColor": "blue"
+        },
+        {
+            "type": "gpu",
+            "format": "{2}",
+            "key": "  󰢮 GPU",
+            "keyColor": "blue"
+        },
+        {
+            "type": "command",
+            "keyColor": "cyan",
+            "key": "   Disk Usage",
+            "format": "{1}",
+            "text": "df -h / | awk 'NR==2 {used=$3; total=$2; pct=$5; gsub(/%/,\"\",pct); color=(pct>90?\"\\033[31m\":pct>70?\"\\033[33m\":\"\\033[32m\"); printf \"%s / %s (%s%s%%\\033[0m)\", used, total, color, pct}'"
+        },
+        {
+            "type": "memory",
+            "key": "  󰘚 Memory",
+            "keyColor": "cyan"
+        },      
+        {
+            "type": "command",
+            "keyColor": "red",
+            "key": "  󱦟 OS Age",
+            "format": "{1}",  // Ensures normal text without bold formatting
+            "text": "birth_install=$(stat -c %W /); current=$(date +%s); time_progression=$((current - birth_install)); days_difference=$((time_progression / 86400)); echo $days_difference days"
+        },
+        {
+            "type": "uptime",
+            "key": "  󱫐 Uptime",
+            "keyColor": "red"
+        },
+        {
+            "type": "custom",
+            "format": "└──────────────────────────────────────────┘"
+        }        
+    ]
+}

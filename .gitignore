@@ -2,7 +2,7 @@
 /*
 
 # allow configs we want to keep using this format
-# !dir
+# !dir/
 !DankMaterialShell/
 !danksearch/
 !dgop/
@@ -23,6 +23,7 @@
 !electron-flags.conf
 !mimeapps.list
 !starship.toml
+!.gitignore
 !.gitignore
 
 # ignore configs with secrets

@@ -24,7 +24,7 @@
 !mimeapps.list
 !starship.toml
 !.gitignore
-!.gitignore
+!README.md
 
 # ignore configs with secrets
 rclone/rclone.conf

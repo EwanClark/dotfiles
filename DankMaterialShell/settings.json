@@ -156,7 +156,7 @@
   "useAutoLocation": false,
   "weatherEnabled": true,
   "networkPreference": "ethernet",
-  "vpnLastConnected": "5c0f2aea-b97c-4ed4-ad19-3df7e8b216e6",
+  "vpnLastConnected": "90af1f6d-414d-406b-a38b-c3367aef71da",
   "iconTheme": "System Default",
   "launcherLogoMode": "apps",
   "launcherLogoCustomPath": "",
@@ -183,7 +183,7 @@
   "soundPluggedIn": true,
   "acMonitorTimeout": 0,
   "acLockTimeout": 900,
-  "acSuspendTimeout": 1800,
+  "acSuspendTimeout": 3600,
   "acSuspendBehavior": 0,
   "batteryMonitorTimeout": 0,
   "batteryLockTimeout": 0,
@@ -246,6 +246,13 @@
   "notificationTimeoutCritical": 0,
   "notificationPopupPosition": 0,
   "osdAlwaysShowValue": true,
+  "osdPosition": 5,
+  "osdVolumeEnabled": true,
+  "osdBrightnessEnabled": true,
+  "osdIdleInhibitorEnabled": true,
+  "osdMicMuteEnabled": true,
+  "osdCapsLockEnabled": true,
+  "osdPowerProfileEnabled": true,
   "powerActionConfirm": true,
   "powerMenuActions": [
     "reboot",
@@ -266,6 +273,7 @@
   "updaterUseCustomCommand": false,
   "updaterCustomCommand": "",
   "updaterTerminalAdditionalParams": "",
+  "displayNameMode": "system",
   "screenPreferences": {
     "dankBar": [
       "all"

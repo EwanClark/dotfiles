@@ -9,13 +9,9 @@
 !fastfetch/
 !fish/
 !gh/
-!gtk-3.0/
-!gtk-4.0/
 !hypr/
 !kitty/
 !nvim/
-!qt5ct/
-!qt6ct/
 !rclone/
 !systemd/
 !chromium-flags.conf.notinuse
@@ -25,6 +21,7 @@
 !starship.toml
 !.gitignore
 !README.md
+!gtk-4.0/gtk.css
 
 # ignore configs with secrets
 rclone/rclone.conf

@@ -113,7 +113,7 @@
   "runningAppsGroupByApp": false,
   "clockDateFormat": "dddd, d",
   "lockDateFormat": "dddd, d",
-  "mediaSize": 0,
+  "mediaSize": 1,
   "dankBarLeftWidgets": [
     "launcherButton",
     "workspaceSwitcher"

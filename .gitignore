@@ -19,7 +19,7 @@
 # because gitignore processes rules in order - we need to un-ignore the directory first
 gtk-4.0/*
 !gtk-4.0/gtk.css
-!chromium-flags.conf.notinuse
+!chromium-flags.conf
 !code-flags.conf
 !electron-flags.conf
 !mimeapps.list

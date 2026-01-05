@@ -15,8 +15,6 @@
 !rclone/
 !systemd/
 !gtk-4.0/
-# ignore all files in gtk-4.0/ except gtk.css (must come after !gtk-4.0/)
-# because gitignore processes rules in order - we need to un-ignore the directory first
 gtk-4.0/*
 !gtk-4.0/gtk.css
 !chromium-flags.conf
@@ -29,7 +27,9 @@ gtk-4.0/*
 
 # ignore configs with secrets and auto generated color schemes
 rclone/rclone.conf
+rclone/bisync/*
 DankMaterialShell/firefox.css
 dgop/colors.json
 kitty/dank-tabs.conf
 kitty/dank-theme.conf
+fish/fish_variables

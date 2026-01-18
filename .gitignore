@@ -35,3 +35,4 @@ kitty/dank-theme.conf
 fish/fish_variables
 hypr/dms/colors.conf
 hypr/dms/layout.conf
+nvim/lua/plugins/dankcolors.lua

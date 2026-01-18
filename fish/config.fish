@@ -34,6 +34,7 @@ alias l="eza -lh --icons"
 alias la="eza -lah --icons"
 alias ls="eza --icons"
 alias btop="dgop"
+alias nrd="npm run dev"
 
 # ------- Startup ------- #
 function fish_greeting

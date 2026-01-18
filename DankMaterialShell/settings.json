@@ -326,7 +326,7 @@
       "screenPreferences": [
         "all"
       ],
-      "showOnLastDisplay": true,
+      "showOnLastDisplay": false,
       "leftWidgets": [
         "launcherButton",
         "workspaceSwitcher"
@@ -334,7 +334,8 @@
       "centerWidgets": [
         {
           "id": "music",
-          "enabled": true
+          "enabled": true,
+          "mediaSize": 0
         },
         {
           "id": "clock",
@@ -366,7 +367,7 @@
           "showPrinterIcon": false
         }
       ],
-      "spacing": 3,
+      "spacing": 4,
       "innerPadding": 4,
       "bottomGap": 0,
       "transparency": 1,

@@ -31,5 +31,26 @@
     "enabled": true,
     "saveLocation": "~/Media/Pictures/Screenshots",
     "videoSaveLocation": "~/Media/Videos/Screenrecordings"
+  },
+  "gitmojiLauncher": {
+    "enabled": true,
+    "noTrigger": false
+  },
+  "wallpaperBing": {
+    "enabled": true
+  },
+  "lyricsOnPanel": {
+    "enabled": true
+  },
+  "wallpaperShufflerPlugin": {
+    "enabled": true,
+    "wallpaperPath": "~/Media/Wallpapers",
+    "shuffleInterval": "10"
+  },
+  "dankPomodoroTimer": {
+    "enabled": true
+  },
+  "sathiAi": {
+    "enabled": false
   }
 }

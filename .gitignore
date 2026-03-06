@@ -24,6 +24,7 @@ gtk-4.0/*
 !starship.toml
 !.gitignore
 !README.md
+!vscode_custom.css
 
 # ignore configs with secrets and auto generated color schemes
 rclone/rclone.conf

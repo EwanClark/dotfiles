@@ -10,6 +10,7 @@
   "dockTransparency": 1,
   "widgetBackgroundColor": "sch",
   "widgetColorMode": "default",
+  "controlCenterTileColorMode": "primary",
   "cornerRadius": 12,
   "niriLayoutGapsOverride": -1,
   "niriLayoutRadiusOverride": -1,
@@ -22,7 +23,9 @@
   "mangoLayoutBorderSize": -1,
   "use24HourClock": false,
   "showSeconds": false,
+  "padHours12Hour": false,
   "useFahrenheit": false,
+  "windSpeedUnit": "kmh",
   "nightModeEnabled": false,
   "animationSpeed": 1,
   "customAnimationDuration": 500,
@@ -58,6 +61,7 @@
   "controlCenterShowMicPercent": false,
   "controlCenterShowBatteryIcon": false,
   "controlCenterShowPrinterIcon": false,
+  "controlCenterShowScreenSharingIcon": true,
   "showPrivacyButton": true,
   "privacyShowMicIcon": false,
   "privacyShowCameraIcon": false,
@@ -120,11 +124,19 @@
   "workspaceScrolling": false,
   "showWorkspaceApps": false,
   "maxWorkspaceIcons": 3,
+  "workspaceAppIconSizeOffset": 0,
   "groupWorkspaceApps": true,
-  "workspacesPerMonitor": true,
+  "workspaceFollowFocus": false,
   "showOccupiedWorkspacesOnly": true,
   "reverseScrolling": false,
   "dwlShowAllTags": false,
+  "workspaceColorMode": "default",
+  "workspaceOccupiedColorMode": "none",
+  "workspaceUnfocusedColorMode": "default",
+  "workspaceUrgentColorMode": "default",
+  "workspaceFocusedBorderEnabled": false,
+  "workspaceFocusedBorderColor": "primary",
+  "workspaceFocusedBorderThickness": 2,
   "workspaceNameIcons": {},
   "waveProgressEnabled": true,
   "scrollTitleEnabled": true,
@@ -136,21 +148,76 @@
   "keyboardLayoutNameCompactMode": false,
   "runningAppsCurrentWorkspace": false,
   "runningAppsGroupByApp": false,
-  "centeringMode": "index",
+  "appIdSubstitutions": [
+    {
+      "pattern": "Spotify",
+      "replacement": "spotify",
+      "type": "exact"
+    },
+    {
+      "pattern": "beepertexts",
+      "replacement": "beeper",
+      "type": "exact"
+    },
+    {
+      "pattern": "home assistant desktop",
+      "replacement": "homeassistant-desktop",
+      "type": "exact"
+    },
+    {
+      "pattern": "com.transmissionbt.transmission",
+      "replacement": "transmission-gtk",
+      "type": "contains"
+    },
+    {
+      "pattern": "^steam_app_(\\d+)$",
+      "replacement": "steam_icon_$1",
+      "type": "regex"
+    }
+  ],
+  "centeringMode": "geometric",
   "clockDateFormat": "dddd, d",
   "lockDateFormat": "dddd, d",
   "mediaSize": 1,
   "appLauncherViewMode": "list",
   "spotlightModalViewMode": "list",
+  "browserPickerViewMode": "grid",
+  "browserUsageHistory": {},
+  "appPickerViewMode": "grid",
+  "filePickerUsageHistory": {},
   "sortAppsAlphabetically": true,
   "appLauncherGridColumns": 4,
   "spotlightCloseNiriOverview": true,
+  "spotlightSectionViewModes": {
+    "apps": "list"
+  },
+  "appDrawerSectionViewModes": {},
   "niriOverviewOverlayEnabled": true,
+  "dankLauncherV2Size": "micro",
+  "dankLauncherV2BorderEnabled": false,
+  "dankLauncherV2BorderThickness": 2,
+  "dankLauncherV2BorderColor": "primary",
+  "dankLauncherV2ShowFooter": false,
   "useAutoLocation": false,
   "weatherEnabled": true,
   "networkPreference": "ethernet",
-  "vpnLastConnected": "3f0a06b9-3a9d-4af8-93f0-c57f363178fc",
   "iconTheme": "System Default",
+  "cursorSettings": {
+    "theme": "System Default",
+    "size": 24,
+    "niri": {
+      "hideWhenTyping": false,
+      "hideAfterInactiveMs": 0
+    },
+    "hyprland": {
+      "hideOnKeyPress": false,
+      "hideOnTouch": false,
+      "inactiveTimeout": 0
+    },
+    "dwl": {
+      "cursorHideTimeout": 0
+    }
+  },
   "launcherLogoMode": "apps",
   "launcherLogoCustomPath": "",
   "launcherLogoColorOverride": "",
@@ -223,8 +290,10 @@
   "matugenTemplateDgop": true,
   "matugenTemplateKcolorscheme": true,
   "matugenTemplateVscode": false,
+  "matugenTemplateEmacs": true,
   "showDock": false,
   "dockAutoHide": true,
+  "dockSmartAutoHide": false,
   "dockGroupByApp": false,
   "dockOpenOnOverview": false,
   "dockPosition": 1,
@@ -238,6 +307,16 @@
   "dockBorderOpacity": 1,
   "dockBorderThickness": 1,
   "dockIsolateDisplays": false,
+  "dockLauncherEnabled": true,
+  "dockLauncherLogoMode": "apps",
+  "dockLauncherLogoCustomPath": "",
+  "dockLauncherLogoColorOverride": "",
+  "dockLauncherLogoSizeOffset": 0,
+  "dockLauncherLogoBrightness": 0.5,
+  "dockLauncherLogoContrast": 1,
+  "dockMaxVisibleApps": 0,
+  "dockMaxVisibleRunningApps": 0,
+  "dockShowOverflowBadge": true,
   "notificationOverlayEnabled": false,
   "modalDarkenBackground": false,
   "lockScreenShowPowerActions": true,
@@ -246,14 +325,18 @@
   "lockScreenShowDate": true,
   "lockScreenShowProfileImage": true,
   "lockScreenShowPasswordField": true,
+  "lockScreenShowMediaPlayer": true,
+  "lockScreenPowerOffMonitorsOnLock": false,
   "enableFprint": false,
   "maxFprintTries": 3,
   "lockScreenActiveMonitor": "all",
   "lockScreenInactiveColor": "#000000",
+  "lockScreenNotificationMode": 0,
   "hideBrightnessSlider": false,
   "notificationTimeoutLow": 5000,
   "notificationTimeoutNormal": 5000,
   "notificationTimeoutCritical": 0,
+  "notificationCompactMode": false,
   "notificationPopupPosition": 0,
   "notificationHistoryEnabled": true,
   "notificationHistoryMaxCount": 50,
@@ -462,5 +545,36 @@
   "desktopWidgetPositions": {},
   "desktopWidgetGridSettings": {},
   "desktopWidgetInstances": [],
+  "desktopWidgetGroups": [],
+  "builtInPluginSettings": {
+    "dms_settings_search": {
+      "trigger": "?",
+      "enabled": false
+    },
+    "dms_settings": {
+      "enabled": true
+    },
+    "dms_sysmon": {
+      "enabled": false
+    },
+    "dms_notepad": {
+      "enabled": false
+    }
+  },
+  "launcherPluginVisibility": {
+    "dms_settings_search": {
+      "allowWithoutTrigger": false
+    },
+    "calculator": {
+      "allowWithoutTrigger": false
+    },
+    "commandRunner": {
+      "allowWithoutTrigger": false
+    },
+    "emojiLauncher": {
+      "allowWithoutTrigger": false
+    }
+  },
+  "launcherPluginOrder": [],
   "configVersion": 5
 }

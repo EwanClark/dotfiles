@@ -41,6 +41,9 @@ text/x-lua=cursor.desktop
 application/pdf=org.gnome.Evince.desktop
 x-scheme-handler/lunarclient=lunarclient.desktop
 x-scheme-handler/discord-562286213059444737=lunarclient.desktop
+x-scheme-handler/opencode=opencode-desktop-handler.desktop
+x-scheme-handler/claude=claude.desktop
+x-scheme-handler/claude-cli=claude-code-url-handler.desktop
 
 [Added Associations]
 text/markdown=cursor.desktop;

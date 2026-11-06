@@ -1,4 +1,5 @@
 # ------- Environment Variables ------- #
+set -gx DMS_PRIVESC "sudo"
 set -gx EDITOR "cursor"
 set -gx FZF_DEFAULT_OPTS "
   --style full \

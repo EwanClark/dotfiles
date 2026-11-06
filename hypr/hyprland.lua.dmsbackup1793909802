@@ -1,0 +1,284 @@
+-- Hyprland Configuration
+--
+-- Converted from hyprland.conf (hyprlang) to the Lua config format.
+-- Docs: https://wiki.hypr.land/configuring/core/
+
+-- ==================
+-- MONITOR CONFIG
+-- ==================
+
+require("dms.outputs")
+
+local workspace_monitors = {
+    ["HDMI-A-1"] = { 1, 2, 3 },
+    ["DP-1"]     = { 4, 5, 6, 7 },
+    ["HDMI-A-2"] = { 8, 9, 10 },
+}
+
+for monitor, workspaces in pairs(workspace_monitors) do
+    for _, ws in ipairs(workspaces) do
+        hl.workspace_rule({ workspace = tostring(ws), monitor = monitor })
+    end
+end
+
+-- ==================
+-- ENVIRONMENT VARS
+-- ==================
+hl.env("GDK_BACKEND", "wayland,x11")
+hl.env("XDG_SESSION_TYPE", "wayland")
+hl.env("QT_QPA_PLATFORM", "wayland")
+hl.env("QT_QPA_PLATFORMTHEME", "gtk3")
+hl.env("QT_QPA_PLATFORMTHEME_QT6", "gtk3")
+
+-- ==================
+-- NVIDIA CONFIG
+-- ==================
+hl.env("LIBVA_DRIVER_NAME", "nvidia")
+hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
+hl.env("__GL_VRR_ALLOWED", "1")
+hl.env("WLR_NO_HARDWARE_CURSORS", "1")
+hl.env("WLR_DRM_NO_ATOMIC", "1")
+hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
+hl.env("NVD_BACKEND", "direct")
+
+-- ==================
+-- STARTUP APPS
+-- ==================
+hl.on("hyprland.start", function()
+    hl.exec_cmd("wl-paste --watch cliphist store &")
+    hl.exec_cmd("/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1")
+    hl.exec_cmd("udiskie --no-automount --smart-tray")
+end)
+
+-- ==================
+-- INPUT CONFIG
+-- ==================
+hl.config({
+    input = {
+        kb_layout          = "us",
+        numlock_by_default = true,
+        accel_profile      = "flat",
+    },
+})
+
+-- ==================
+-- GENERAL LAYOUT
+-- ==================
+hl.config({
+    general = {
+        gaps_in     = 5,
+        gaps_out    = 5,
+        border_size = 0, -- off in niri
+
+        col = {
+            active_border   = "rgba(707070ff)",
+            inactive_border = "rgba(d0d0d0ff)",
+        },
+
+        layout = "dwindle",
+    },
+})
+
+-- ==================
+-- DECORATION
+-- ==================
+hl.config({
+    decoration = {
+        rounding = 12,
+
+        active_opacity   = 0.95,
+        inactive_opacity = 0.90,
+
+        shadow = {
+            enabled      = true,
+            range        = 30,
+            render_power = 4,
+            offset       = { 0, 5 },
+            color        = "rgba(00000070)",
+        },
+    },
+})
+
+-- ==================
+-- ANIMATIONS
+-- ==================
+hl.config({ animations = { enabled = true } })
+
+hl.animation({ leaf = "windowsIn",   enabled = true, speed = 3, bezier = "default" })
+hl.animation({ leaf = "windowsOut",  enabled = true, speed = 3, bezier = "default" })
+hl.animation({ leaf = "workspaces",  enabled = true, speed = 5, bezier = "default" })
+hl.animation({ leaf = "windowsMove", enabled = true, speed = 4, bezier = "default" })
+hl.animation({ leaf = "fade",        enabled = true, speed = 3, bezier = "default" })
+hl.animation({ leaf = "border",      enabled = true, speed = 3, bezier = "default" })
+
+-- ==================
+-- LAYOUTS
+-- ==================
+hl.config({
+    dwindle = {
+        preserve_split = true,
+    },
+
+    master = {
+        mfact = 0.5,
+    },
+})
+
+-- ==================
+-- MISC
+-- ==================
+hl.config({
+    misc = {
+        disable_hyprland_logo   = true,
+        disable_splash_rendering = true,
+        vrr                     = 1,
+    },
+})
+
+-- ==================
+-- WINDOW RULES
+-- ==================
+
+-- === Opacity ===
+hl.window_rule({ match = { class = "^(Cursor|cursor)$" }, opacity = "0.92 0.90" })
+hl.window_rule({ match = { class = "^(code)$" },          opacity = "0.92 0.90" })
+hl.window_rule({ match = { class = "^(Spotify)$" },       opacity = "0.90 0.85" })
+hl.window_rule({ match = { class = "^(kitty)$" },         opacity = "0.90 0.85" })
+
+-- === Float Or Tiled Windows ===
+local function float_centered(class, w, h)
+    hl.window_rule({
+        match  = { class = class },
+        float  = true,
+        size   = { w, h },
+        center = true,
+    })
+end
+
+float_centered([[^(org\.pulseaudio\.pavucontrol)$]],            1200, 600)
+float_centered([[^(gnome-calculator)$]],                         350, 550)
+float_centered([[^(blueman-manager)$]],                          500, 600)
+float_centered([[^(xdg-desktop-portal|xdg-desktop-portal-gtk)$]], 1200, 600)
+float_centered([[^(org\.gnome\.Nautilus)$]],                     850, 500)
+float_centered([[^(org\.quickshell)$]],                          950, 900)
+
+hl.layer_rule({ match = { namespace = "^(quickshell)$" }, no_anim = true })
+
+-- ==================
+-- KEYBINDINGS
+-- ==================
+local mod     = "SUPER"
+local term    = "kitty"
+local file    = "nautilus"
+local browser = "chromium"
+local editor  = "cursor"
+local music   = "spotify-launcher"
+local pass    = "1password"
+
+-- Dank Material Shell Applications
+hl.bind(mod .. " + SHIFT + R",   hl.dsp.exec_cmd("dms ipc call spotlight toggle"))
+hl.bind(mod .. " + V",           hl.dsp.exec_cmd("dms ipc call clipboard toggle"))
+hl.bind("CTRL + SHIFT + Escape", hl.dsp.exec_cmd("dms ipc call processlist toggle"))
+hl.bind("CTRL + ALT + Delete",   hl.dsp.exec_cmd("dms ipc call processlist toggle"))
+hl.bind(mod .. " + comma",       hl.dsp.exec_cmd("dms ipc call settings toggle"))
+hl.bind(mod .. " + SHIFT + N",   hl.dsp.exec_cmd("dms ipc call notifications toggle"))
+hl.bind(mod .. " + SHIFT + S",   hl.dsp.exec_cmd("dms ipc call notepad toggle"))
+hl.bind(mod .. " + Y",           hl.dsp.exec_cmd("dms ipc call dankdash wallpaper"))
+hl.bind(mod .. " + Tab",         hl.dsp.exec_cmd("dms ipc call hypr toggleOverview"))
+hl.bind(mod .. " + R",           hl.dsp.exec_cmd("killall dms; dms run &"))
+
+-- === Application Launchers ===
+hl.bind(mod .. " + Return", hl.dsp.exec_cmd(term))
+hl.bind(mod .. " + N",      hl.dsp.exec_cmd(file))
+hl.bind(mod .. " + B",      hl.dsp.exec_cmd(browser))
+hl.bind(mod .. " + E",      hl.dsp.exec_cmd(editor))
+hl.bind(mod .. " + M", function()
+    local w = hl.get_window("class:^(Spotify|spotify)$")
+    if w then
+        hl.dispatch(hl.dsp.focus({ window = w }))
+    else
+        hl.dispatch(hl.dsp.exec_cmd(music))
+    end
+end)
+
+-- === Cheat sheet ===
+hl.bind(mod .. " + slash", hl.dsp.exec_cmd("dms ipc call keybinds toggle hyprland"))
+
+-- === Security ===
+hl.bind(mod .. " + L", hl.dsp.exec_cmd("dms ipc call lock lock"))
+
+-- === Audio Controls ===
+hl.bind("XF86AudioRaiseVolume",        hl.dsp.exec_cmd("dms ipc call audio increment 1"), { repeating = true, locked = true })
+hl.bind("XF86AudioLowerVolume",        hl.dsp.exec_cmd("dms ipc call audio decrement 1"), { repeating = true, locked = true })
+hl.bind("XF86AudioMute",               hl.dsp.exec_cmd("dms ipc call audio mute"),        { locked = true })
+hl.bind(mod .. " + XF86AudioMute",     hl.dsp.exec_cmd("dms ipc call audio cycleoutput"), { locked = true })
+hl.bind(mod .. " + bracketright",      hl.dsp.exec_cmd("playerctl --player=spotify next"))
+hl.bind(mod .. " + bracketleft",       hl.dsp.exec_cmd("playerctl --player=spotify previous"))
+hl.bind(mod .. " + backslash",         hl.dsp.exec_cmd("~/.config/hypr/scripts/play-pause.sh"))
+hl.bind("CTRL + XF86AudioRaiseVolume", hl.dsp.exec_cmd("playerctl position 5+"), { repeating = true, locked = true })
+hl.bind("CTRL + XF86AudioLowerVolume", hl.dsp.exec_cmd("playerctl position 5-"), { repeating = true, locked = true })
+
+-- === Window Management ===
+hl.bind(mod .. " + C",         hl.dsp.window.close())
+hl.bind(mod .. " + J",         hl.dsp.layout("togglesplit"))
+hl.bind(mod .. " + F",         hl.dsp.window.fullscreen({ mode = "fullscreen" }))
+hl.bind(mod .. " + SHIFT + F", hl.dsp.window.fullscreen({ mode = "maximized" }))
+hl.bind(mod .. " + space",     hl.dsp.window.float())
+
+-- === Focus Navigation ===
+hl.bind("CTRL + SHIFT + W", hl.dsp.focus({ direction = "up" }))
+hl.bind("CTRL + SHIFT + A", hl.dsp.focus({ direction = "left" }))
+hl.bind("CTRL + SHIFT + S", hl.dsp.focus({ direction = "down" }))
+hl.bind("CTRL + SHIFT + D", hl.dsp.focus({ direction = "right" }))
+
+-- === Window Movement ===
+hl.bind(mod .. " + W", hl.dsp.window.move({ direction = "up" }))
+hl.bind(mod .. " + A", hl.dsp.window.move({ direction = "left" }))
+hl.bind(mod .. " + S", hl.dsp.window.move({ direction = "down" }))
+hl.bind(mod .. " + D", hl.dsp.window.move({ direction = "right" }))
+
+-- === Window Resizing ===
+-- Legacy `resizeactive ... %` sized the step as a fraction of the *monitor*.
+-- hl.dsp.window.resize only takes pixels, so compute the step at press time.
+local function resize_by_percent(px, py)
+    return function()
+        local m = hl.get_active_monitor()
+        if not m then
+            return
+        end
+        hl.dispatch(hl.dsp.window.resize({
+            x        = math.floor(m.width * px / 100),
+            y        = math.floor(m.height * py / 100),
+            relative = true,
+        }))
+    end
+end
+
+hl.bind(mod .. " + SHIFT + W", resize_by_percent(0, -10), { repeating = true })
+hl.bind(mod .. " + SHIFT + A", resize_by_percent(-10, 0), { repeating = true })
+hl.bind(mod .. " + SHIFT + S", resize_by_percent(0, 10),  { repeating = true })
+hl.bind(mod .. " + SHIFT + D", resize_by_percent(10, 0),  { repeating = true })
+
+-- === Move/resize windows with mod + LMB/RMB and dragging ===
+hl.bind(mod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true, description = "Move window" })
+hl.bind(mod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true, description = "Resize window" })
+
+-- === Mouse Wheel Navigation ===
+hl.bind(mod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
+hl.bind(mod .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
+
+-- === Numbered Workspaces + Move to Numbered Workspaces ===
+for i = 1, 10 do
+    local key = i % 10 -- 10 maps to key 0
+    hl.bind(mod .. " + " .. key,           hl.dsp.focus({ workspace = i }))
+    hl.bind(mod .. " + SHIFT + " .. key,   hl.dsp.window.move({ workspace = i }))
+end
+
+-- === Screenshots ===
+hl.bind(mod .. " + Next", hl.dsp.exec_cmd(
+    [[grimblast copysave output ~/Media/Screenshots/screenshot-$(date +%Y-%m-%d_%H-%M-%S).png && notify-send --app-name="Screenshots" "Screenshot Copied and Saved" "Saved as: screenshot-$(date +%Y-%m-%d_%H-%M-%S).png"]]))
+hl.bind("Next", hl.dsp.exec_cmd(
+    [[grimblast copy output && notify-send --app-name="Screenshots" "Screenshot Copied to Clipboard"]]))
+
+require("dms.cursor")
+require("dms.layout")
